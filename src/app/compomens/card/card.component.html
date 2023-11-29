@@ -1,0 +1,17 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{image.title}}</mat-card-title>
+    <p *ngIf="image.save">נשמר בהצלחה</p>
+  </mat-card-header>
+  
+  <mat-form-field>
+    <mat-label>נתיב שמירת תמונה</mat-label>
+    <input matInput disabled [value]="image.imagePath">
+  </mat-form-field>
+  <mat-form-field *ngIf="image.back">
+    <mat-label>נתיב שמירת גב תמונה</mat-label>
+    <input matInput disabled [value]="image.backOfImage">
+  </mat-form-field>
+  <mat-checkbox (change)="sendCheckboxValue($event)" class="example-margin">גב תמונה</mat-checkbox>
+  
+</mat-card>

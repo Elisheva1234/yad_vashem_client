@@ -1,0 +1,33 @@
+<form class="example-form" (ngSubmit)="getCollectionName()">
+  <mat-form-field class="example-full-width">
+    <mat-label>מספר האוסף</mat-label>
+    <input type="text" matInput [formControl]="numberFormControl" placeholder="1234">
+    <mat-error *ngIf="numberFormControl.hasError('email') && !numberFormControl.hasError('required')">
+    </mat-error>
+    <mat-error *ngIf="numberFormControl.hasError('required')">
+      <strong>חובה </strong>להכניס מספר
+    </mat-error>
+  </mat-form-field>
+  <button className="button" type="submit" mat-raised-button color="primary"
+    [disabled]="numberFormControl.invalid">הבא</button>
+</form>
+<mat-form-field class="example-full-width">
+  <mat-label>שם אוסף</mat-label>
+  <input matInput disabled [value]="collectionName">
+</mat-form-field>
+<button (click)="addItem()" *ngIf="collectionName!=''&&collectionName!='There is no such collection'" mat-fab
+  color="primary" aria-label="Example icon button with a add icon">
+  <mat-icon>add</mat-icon>
+  <div>הוסף</div>
+</button>
+<div *ngFor="let card of img">
+  <app-card [img]="card"></app-card>
+</div>
+<button (click)="delete()" *ngIf="collectionName!=''&&collectionName!='There is no such collection'" mat-fab
+  color="primary" aria-label="Example icon button with a add icon">
+  <mat-icon>delete</mat-icon>
+  <div>מחק</div>
+</button>
+<button mat-button color="primary" *ngIf="collectionName!=''&&collectionName!='There is no such collection'"
+  (click)="save()">שמור</button>
+
